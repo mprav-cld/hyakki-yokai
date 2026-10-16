@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Хякки: энциклопедия ёкаев</title>
+<meta name="description" content="Небольшая энциклопедия японских ёкаев: демоны они, лисы-оборотни кицунэ и горные духи тэнгу.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;600;800&amp;family=Onest:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;family=Yuji+Syuku&amp;display=swap">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#0a0809}
+a{color:inherit;text-decoration:none}
+a:hover{color:#ece5dc}
+.yk{--bg:#0a0809;--ink:#ece5dc;--body:#cfc5ba;--muted:#a59a90;--muted-2:#877c73;--line:rgba(236,229,220,.09);--line-strong:rgba(236,229,220,.2);--shu:#e5482f;--shu-deep:#a8261a;--glass:rgba(16,11,12,.62);--r:2px;--maxw:1240px;position:relative;min-height:100vh;color:var(--ink);background:var(--bg);font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+.yk *{box-sizing:border-box}
+.sky{position:fixed;inset:0;width:100%;height:100vh;display:block;z-index:0;pointer-events:none}
+.page{position:relative;z-index:1}
+.jp{font-family:'Yuji Syuku',serif}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* nav */
+.nav-wrap{position:sticky;top:0;z-index:5;background:rgba(10,8,9,.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:12px;font-family:'Geologica',sans-serif;font-weight:800;font-size:18px;letter-spacing:.2em}
+.seal{display:inline-grid;place-items:center;flex:none;width:30px;height:30px;border-radius:var(--r);background:var(--shu-deep);color:var(--ink);font-family:'Yuji Syuku',serif;font-size:17px;line-height:1;letter-spacing:0}
+.nav-links{display:flex;gap:32px;font-size:15px;color:var(--muted)}
+.nav-links a{padding:12px 0;transition:color .2s}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:14px 26px;border-radius:var(--r);border:1px solid transparent;font-family:'Geologica',sans-serif;font-size:15px;font-weight:600;letter-spacing:.01em;white-space:nowrap;cursor:pointer;transition:transform .5s cubic-bezier(.16,1,.3,1),background .3s ease,border-color .3s ease,box-shadow .5s cubic-bezier(.16,1,.3,1)}
+.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.btn:hover svg{transform:translateX(4px)}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-primary{color:var(--ink);background:var(--shu-deep);box-shadow:0 18px 40px -18px rgba(229,72,47,.7)}
+.btn-primary:hover{color:var(--ink);background:#bb2d1e;transform:translateY(-2px);box-shadow:0 24px 50px -18px rgba(229,72,47,.85)}
+.btn-outline{color:var(--ink);background:rgba(236,229,220,.03);border-color:var(--line-strong);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn-outline:hover{background:rgba(236,229,220,.08);transform:translateY(-2px)}
+
+/* hero */
+.hero{position:relative;min-height:calc(100vh - 68px);min-height:calc(100dvh - 68px);display:flex;flex-direction:column;justify-content:flex-end}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,9,.88) 0%,rgba(10,8,9,.5) 42%,transparent 72%),linear-gradient(0deg,rgba(10,8,9,.9) 0%,transparent 35%);pointer-events:none}
+.hero-inner{position:relative;padding-top:64px;padding-bottom:clamp(56px,11vh,128px)}
+.hero-title{margin:0;font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(44px,6.4vw,104px);line-height:.96;letter-spacing:-.04em}
+.hero-title span{display:block}
+.hero-title em{font-style:normal;color:var(--shu)}
+.hero-sub{margin:28px 0 0;max-width:36ch;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--muted)}
+.hero-actions{margin-top:40px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-kanji{position:absolute;right:clamp(24px,6vw,96px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;font-size:clamp(56px,7vw,112px);line-height:1;letter-spacing:.12em;color:var(--ink);opacity:.16;pointer-events:none}
+
+/* marquee */
+.marquee{position:relative;overflow:hidden;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(10,8,9,.5);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:marquee 70s linear infinite}
+.marquee-group{display:flex;gap:64px;padding-right:64px}
+.src{display:inline-flex;align-items:baseline;gap:14px;white-space:nowrap}
+.src b{font-family:'Yuji Syuku',serif;font-weight:400;font-size:26px;color:var(--shu)}
+.src span{font-family:'Geologica',sans-serif;font-weight:300;font-size:20px;color:var(--muted)}
+
+/* section rhythm */
+.section{position:relative;padding:clamp(96px,14vw,192px) 0}
+.eyebrow{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--shu);margin-bottom:22px}
+.h2{margin:0;font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(36px,5vw,72px);line-height:1;letter-spacing:-.035em}
+.lead{margin:22px 0 0;max-width:56ch;font-size:18px;line-height:1.65;color:var(--muted)}
+.head{max-width:860px}
+
+/* bestiary entries */
+.entry{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center;padding:clamp(64px,9vw,128px) 0;scroll-margin-top:80px}
+.entry + .entry{border-top:1px solid var(--line)}
+.stage{position:relative;aspect-ratio:4/5;isolation:isolate}
+.stage::before{content:"";position:absolute;inset:4%;border-radius:50%;background:radial-gradient(closest-side,rgba(130,26,14,.24),rgba(70,12,8,.1) 50%,rgba(70,12,8,.03) 75%,transparent);filter:blur(34px);z-index:0}
+.stage-kanji{position:absolute;inset:0;display:grid;place-items:center;font-family:'Yuji Syuku',serif;font-size:clamp(220px,30vw,440px);line-height:1;color:var(--shu);opacity:.1;z-index:0;pointer-events:none;user-select:none}
+.stage-tengu .stage-kanji{font-size:clamp(150px,19vw,290px);writing-mode:vertical-rl}
+.reveal{position:absolute;inset:2% 4%;z-index:2}
+.float{position:relative;width:100%;height:100%;animation:hover 7s ease-in-out infinite;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6)) drop-shadow(0 0 60px rgba(229,72,47,.14))}
+.stage-tengu .mask{height:86%}
+.mask{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;height:100%;width:auto;max-width:none;-webkit-mask-image:linear-gradient(180deg,#000 58%,rgba(0,0,0,.55) 78%,transparent 100%);mask-image:linear-gradient(180deg,#000 58%,rgba(0,0,0,.55) 78%,transparent 100%)}
+.smoke{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(214,198,190,.15),rgba(214,198,190,.05) 55%,transparent);filter:blur(26px)}
+.smoke.back{z-index:1}
+.smoke.front{z-index:3}
+.s1{width:72%;height:38%;left:-12%;bottom:10%;animation:smokeA 19s ease-in-out infinite alternate}
+.s2{width:62%;height:34%;right:-14%;top:26%;animation:smokeB 23s ease-in-out infinite alternate}
+.s3{width:96%;height:30%;left:2%;bottom:-6%;animation:smokeA 15s ease-in-out infinite alternate-reverse}
+.ink{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(4,2,3,.72),rgba(4,2,3,.4) 36%,rgba(4,2,3,.14) 66%,rgba(4,2,3,.03) 86%,transparent);filter:blur(40px)}
+.ink.back{z-index:1}
+.ink.front{z-index:4}
+.i1{width:72%;height:46%;left:-24%;top:4%;animation:smokeB 17s ease-in-out infinite alternate}
+.i2{width:66%;height:42%;right:-26%;bottom:20%;animation:smokeA 21s ease-in-out infinite alternate}
+.i3{width:96%;height:30%;left:2%;bottom:-2%;animation:smokeA 13s ease-in-out infinite alternate-reverse}
+.i4{width:58%;height:30%;left:-20%;bottom:14%;animation:smokeB 16s ease-in-out infinite alternate-reverse}
+.i5{width:50%;height:28%;right:-16%;top:10%;animation:smokeA 19s ease-in-out infinite alternate-reverse}
+.veil{position:absolute;z-index:4;top:-8%;bottom:-8%;width:86%;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(5,3,4,.95),rgba(5,3,4,.62) 38%,rgba(5,3,4,.22) 68%,rgba(5,3,4,.05) 86%,transparent);filter:blur(44px);opacity:.3}
+.veil-l{left:-52%}
+.veil-r{right:-52%}
+.spark{position:absolute;z-index:5;bottom:14%;width:5px;height:5px;border-radius:50%;background:#ff8f5e;box-shadow:0 0 10px 2px rgba(255,108,58,.75);opacity:0;animation:rise 7s linear infinite;pointer-events:none}
+.spark.fox{width:9px;height:12px;border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;background:radial-gradient(circle at 50% 70%,#ffffff,#cfe6ff 40%,rgba(120,170,255,.5) 75%,transparent);box-shadow:0 0 18px 5px rgba(110,160,255,.5);animation-name:wisp}
+.spark.feather{bottom:auto;top:-4%;width:5px;height:24px;border-radius:50%;background:linear-gradient(180deg,#2c2426,#0b0809);box-shadow:0 0 0 1px rgba(229,72,47,.22);animation-name:fall}
+.entry-name{margin:0;font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(52px,6.4vw,96px);line-height:.95;letter-spacing:-.04em}
+.entry-sub{margin:14px 0 0;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;font-family:'Geologica',sans-serif;font-weight:300;font-size:clamp(19px,1.8vw,24px);color:var(--muted)}
+.entry-sub b{font-family:'Yuji Syuku',serif;font-weight:400;color:var(--shu)}
+.entry-text{margin:26px 0 0;max-width:56ch;font-size:17px;line-height:1.72;color:var(--body)}
+.facts{margin:34px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 36px}
+.fact dt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
+.fact dd{margin:8px 0 0;font-size:15.5px;line-height:1.55;color:var(--ink)}
+.saying{margin:36px 0 0;padding-top:24px;border-top:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;font-size:15.5px;line-height:1.6;color:var(--muted)}
+.saying b{font-family:'Yuji Syuku',serif;font-weight:400;font-size:26px;color:var(--shu);white-space:nowrap}
+
+/* tails */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(40px,6vw,96px);align-items:center}
+.panel{view-timeline:--panel block;padding:28px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line-strong);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 40px 90px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(236,229,220,.06)}
+.panel-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.panel-title{font-family:'Geologica',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.01em}
+.panel-note{font-family:'Yuji Syuku',serif;font-size:20px;color:var(--shu)}
+.tails{margin-top:22px;height:200px;display:flex;align-items:flex-end;gap:10px;padding:18px 16px 10px;border-radius:var(--r);border:1px solid var(--line);background:rgba(0,0,0,.35)}
+.tail-col{flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px}
+.tail{width:100%;border-radius:60% 60% 2px 2px / 40% 40% 2px 2px;background:linear-gradient(180deg,#ffd9b8 0%,var(--shu) 22%,rgba(168,38,26,.16) 100%);transform-origin:bottom;box-shadow:0 0 24px -6px rgba(229,72,47,.7)}
+.tail-n{font-family:'Yuji Syuku',serif;font-size:15px;color:var(--muted)}
+.tails-axis{display:flex;justify-content:space-between;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2)}
+.signs{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.signs li{display:flex;align-items:baseline;font-size:15px;color:var(--muted)}
+.signs i{flex:1;margin:0 12px;border-bottom:1px dotted var(--line-strong);transform:translateY(-4px)}
+.signs b{font-weight:500;color:var(--ink)}
+
+/* bento */
+.bento{margin-top:clamp(72px,10vw,128px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr);grid-auto-rows:minmax(200px,auto);grid-auto-flow:dense;gap:12px}
+.cell{view-timeline:--cell block;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:28px;border-radius:var(--r);border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:border-color .4s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.cell:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+.cell-big{grid-row:span 2;background:radial-gradient(120% 90% at 30% 20%,rgba(168,38,26,.42),transparent 60%),var(--glass)}
+.cell-long{grid-column:span 2;background:repeating-linear-gradient(135deg,rgba(236,229,220,.025) 0 2px,transparent 2px 14px),var(--glass)}
+.cell-value{font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(44px,5vw,72px);line-height:1;letter-spacing:-.03em;color:var(--ink)}
+.cell-value.jp{font-family:'Yuji Syuku',serif;font-weight:400;color:var(--ink)}
+.cell-big .cell-value{font-size:clamp(120px,16vw,220px);color:var(--shu)}
+.cell-label{max-width:34ch;font-size:15px;line-height:1.55;color:var(--muted)}
+
+/* charms */
+.charms{margin-top:clamp(48px,6vw,80px);display:flex;flex-direction:column;gap:4px}
+.charm{position:relative;display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:center;padding:28px 24px;border-radius:var(--r);transition:background .4s ease}
+.charm:hover{background:rgba(236,229,220,.035)}
+.charm-k{font-family:'Yuji Syuku',serif;font-size:64px;line-height:1;color:var(--shu);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.charm:hover .charm-k{transform:translateX(6px) scale(1.06)}
+.charm h3{margin:0;font-family:'Geologica',sans-serif;font-weight:600;font-size:clamp(22px,2.2vw,30px);line-height:1.15;letter-spacing:-.02em}
+.charm p{margin:0;font-size:16px;line-height:1.65;color:var(--muted)}
+
+/* cta + footer */
+.cta{text-align:center;display:flex;flex-direction:column;align-items:center}
+.cta-title{margin:0;max-width:16ch;font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:.95;letter-spacing:-.045em}
+.cta-title em{font-style:normal;color:var(--shu)}
+.cta .lead{text-align:center;margin-left:auto;margin-right:auto}
+.cta .btn{margin-top:40px}
+.footer{display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;padding:56px 0 40px;border-top:1px solid var(--line)}
+.footer-brand p{margin:16px 0 0;max-width:300px;font-size:15px;line-height:1.6;color:var(--muted)}
+.footer-cols{display:flex;gap:clamp(36px,6vw,88px);flex-wrap:wrap}
+.footer-col{display:flex;flex-direction:column;gap:4px;font-size:15px;color:var(--muted)}
+.footer-col h4{margin:0 0 10px;font-family:'Geologica',sans-serif;font-size:14px;font-weight:600;color:var(--ink)}
+.footer-col a{padding:5px 0;transition:color .2s}
+.copyright{padding-bottom:40px;font-size:13.5px;color:var(--muted-2)}
+
+/* motion */
+@keyframes heroIn{from{opacity:0;transform:translateY(28px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes rise{0%{opacity:0;transform:translate(0,0) scale(1)}12%{opacity:1}55%{transform:translate(16px,-170px) scale(.8)}100%{opacity:0;transform:translate(-8px,-340px) scale(.35)}}
+@keyframes wisp{0%{opacity:0;transform:translate(0,0) scale(.6)}15%{opacity:.95}40%{transform:translate(-22px,-90px) scale(1)}70%{opacity:.7;transform:translate(18px,-190px) scale(.85)}100%{opacity:0;transform:translate(-6px,-300px) scale(.4)}}
+@keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(20deg)}10%{opacity:.95}50%{transform:translate(-34px,260px) rotate(-50deg)}100%{opacity:0;transform:translate(24px,560px) rotate(70deg)}}
+@keyframes smokeA{from{transform:translate(-6%,0) scale(1)}to{transform:translate(12%,-6%) scale(1.25)}}
+@keyframes smokeB{from{transform:translate(6%,4%) scale(1.1)}to{transform:translate(-12%,-5%) scale(.9)}}
+@keyframes hover{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-12px) rotate(.6deg)}}
+@keyframes emerge{0%{opacity:0;transform:scale(.72) translateY(90px);filter:brightness(0) blur(26px)}22%{opacity:.55;filter:brightness(.04) blur(16px)}46%{opacity:1;transform:none;filter:brightness(1) blur(0)}84%{opacity:1;transform:none;filter:brightness(1) blur(0)}100%{opacity:.3;transform:scale(.94) translateY(-36px);filter:brightness(.2) blur(10px)}}
+@keyframes veilL{0%{transform:translateX(54%) scale(1.1);opacity:1}46%{transform:none;opacity:.3}84%{transform:none;opacity:.3}100%{transform:translateX(30%);opacity:.85}}
+@keyframes veilR{0%{transform:translateX(-54%) scale(1.1);opacity:1}46%{transform:none;opacity:.3}84%{transform:none;opacity:.3}100%{transform:translateX(-30%);opacity:.85}}
+@keyframes kanjiDrift{from{transform:translateY(9%) scale(1.08)}to{transform:translateY(-9%) scale(1)}}
+@keyframes rv{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.hi{animation:heroIn 1.2s cubic-bezier(.16,1,.3,1) both}
+.hd1{animation-delay:.08s}.hd2{animation-delay:.22s}.hd3{animation-delay:.36s}.hd4{animation-delay:.6s}
+@keyframes tailRise{from{clip-path:inset(100% -26px 0 -26px)}to{clip-path:inset(-32px -26px 0 -26px)}}
+.tail-col:nth-child(2),.signs li:nth-child(2){--i:1}.tail-col:nth-child(3),.signs li:nth-child(3){--i:2}.tail-col:nth-child(4),.signs li:nth-child(4){--i:3}.tail-col:nth-child(5){--i:4}.tail-col:nth-child(6){--i:5}.tail-col:nth-child(7){--i:6}.tail-col:nth-child(8){--i:7}.tail-col:nth-child(9){--i:8}
+
+/* themed text motion */
+@property --yr{syntax:'<integer>';inherits:false;initial-value:1776}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.count{--yr:1776;counter-reset:yr var(--yr);font-variant-numeric:tabular-nums}
+.count::after{content:counter(yr)}
+.stamp{display:inline-block}
+.ember-glow{display:inline-block;animation:emberGlow 4.5s ease-in-out infinite}
+.foxfire,.panel-note{display:inline-block;animation:foxfire 3.6s ease-in-out infinite}
+.tail{position:relative}
+.tail::before{content:"";position:absolute;left:50%;top:-15px;width:12px;height:18px;margin-left:-6px;border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;background:radial-gradient(circle at 50% 70%,#ffffff,#cfe6ff 40%,rgba(120,170,255,.45) 72%,transparent);filter:blur(.6px);animation:tipFlicker 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * -0.37s)}
+.signs b{transition:color .4s ease,text-shadow .4s ease}
+.signs li:hover b{color:#e3ecff;text-shadow:0 0 12px rgba(120,170,255,.8)}
+.brush{padding:60px;margin:-60px;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 36%,transparent 64%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 36%,transparent 64%,transparent 100%);-webkit-mask-size:100% 300%;mask-size:100% 300%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0 0;mask-position:0 0}
+@keyframes brush{0%{opacity:0;-webkit-mask-position:0 100%;mask-position:0 100%;filter:blur(10px);transform:scale(1.06)}30%{opacity:1}100%{opacity:1;-webkit-mask-position:0 0;mask-position:0 0;filter:blur(0);transform:none}}
+@keyframes stamp{0%{opacity:0;transform:scale(2.4) rotate(-14deg);filter:blur(8px)}55%{opacity:1;transform:scale(.9) rotate(3deg);filter:blur(0)}75%{transform:scale(1.04) rotate(-1deg)}100%{opacity:1;transform:none;filter:none}}
+@keyframes yr{from{--yr:1600}to{--yr:1776}}
+@keyframes mist{from{opacity:0;filter:blur(8px);transform:translateY(10px)}to{opacity:1;filter:none;transform:none}}
+@keyframes foxfire{0%,100%{text-shadow:0 0 0 rgba(120,170,255,0)}30%{text-shadow:0 0 14px rgba(120,170,255,.75),0 0 34px rgba(80,130,255,.35)}38%{text-shadow:0 0 4px rgba(120,170,255,.3)}46%{text-shadow:0 0 18px rgba(140,190,255,.85),0 0 40px rgba(80,130,255,.4)}70%{text-shadow:0 0 8px rgba(120,170,255,.4)}}
+@keyframes emberGlow{0%,100%{text-shadow:0 0 18px rgba(229,72,47,.25)}50%{text-shadow:0 0 44px rgba(229,72,47,.6),0 0 100px rgba(229,72,47,.25)}}
+@keyframes tipFlicker{0%,100%{opacity:.85;transform:scale(1)}25%{opacity:.45;transform:scale(.8,1.12)}50%{opacity:1;transform:scale(1.1,.9)}75%{opacity:.6;transform:scale(.95,1.05)}}
+@keyframes lightN{from{opacity:.3;color:var(--muted-2);text-shadow:none}to{opacity:1;color:#e3ecff;text-shadow:0 0 12px rgba(120,170,255,.85)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@keyframes draw{from{transform:translateY(-4px) scaleX(0)}to{transform:translateY(-4px) scaleX(1)}}
+@supports (animation-timeline: view()){
+.reveal{animation:emerge linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+.veil-l{animation:veilL linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+.veil-r{animation:veilR linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+.stage-kanji{animation:kanjiDrift linear both;animation-timeline:view();animation-range:cover}
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+.rv.d1{animation-range:entry 6% entry 61%}
+.rv.d2{animation-range:entry 12% entry 67%}
+.rv.d3{animation-range:entry 18% entry 73%}
+}
+
+/* text motion that plays once a block is in view (the observer adds .on) */
+.yk.js .panel:not(.on) .tail{clip-path:inset(100% -26px 0 -26px)}
+.yk.js .panel:not(.on) .tail-n,.yk.js .panel:not(.on) .signs li,.yk.js .bento:not(.on) .brush,.yk.js .bento:not(.on) .count,.yk.js .bento:not(.on) .stamp,.yk.js .bento:not(.on) .cell-label{opacity:0}
+.panel.on .tail{animation:tailRise 1.1s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0) * 110ms)}
+.panel.on .tail-n{animation:lightN .7s ease-out both;animation-delay:calc(450ms + var(--i,0) * 110ms)}
+.panel.on .signs li{animation:slideIn .8s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(1200ms + var(--i,0) * 160ms)}
+.panel.on .signs i{transform-origin:left center;animation:draw .9s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(1350ms + var(--i,0) * 160ms)}
+.panel.on .signs b{animation:ghostIn 1s ease-out both;animation-delay:calc(1600ms + var(--i,0) * 160ms)}
+.bento.on .brush{animation:brush 1.6s cubic-bezier(.22,.7,.2,1) both}
+.bento.on .cell:nth-child(2) .brush{animation-delay:.35s}
+.bento.on .count{animation:yr 2s cubic-bezier(.16,1,.3,1) both;animation-delay:.5s}
+.bento.on .stamp{animation:stamp .75s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(800ms + var(--i,0) * 260ms)}
+.bento.on .cell-label{animation:mist 1s ease-out both;animation-delay:.9s}
+@keyframes ghostIn{0%{opacity:0;filter:blur(6px)}30%{opacity:1;filter:blur(0)}42%{opacity:.25}55%{opacity:1}68%{opacity:.5}100%{opacity:1;filter:none}}
+
+/* responsive */
+@media (max-width:980px){
+.entry,.split{grid-template-columns:minmax(0,1fr)}
+.stage{width:100%;max-width:520px;margin:0 auto}
+.bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+.charm{grid-template-columns:88px minmax(0,1fr);grid-template-areas:"k t" "k p";row-gap:8px}
+.charm-k{grid-area:k;font-size:52px}
+.charm h3{grid-area:t}
+.charm p{grid-area:p}
+.hero-kanji{display:none}
+}
+@media (max-width:720px){
+.nav-links{gap:18px;font-size:14px}
+.section{padding:clamp(72px,18vw,112px) 0}
+.wrap{padding:0 20px}
+}
+@media (max-width:560px){
+.nav-links{display:none}
+.facts{grid-template-columns:minmax(0,1fr)}
+.bento{grid-template-columns:minmax(0,1fr)}
+.cell-big{grid-row:span 1}
+.cell-long{grid-column:span 1}
+.hero-actions .btn{flex:1}
+.footer{flex-direction:column}
+.tails{gap:6px;padding:12px 10px 8px}
+}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.hi,.rv,.tail,.tail::before,.tail-n,.signs li,.signs i,.signs b,.reveal,.float,.stage-kanji,.smoke,.ink,.veil,.spark,.marquee-track,.brush,.count,.stamp,.cell-label,.ember-glow,.foxfire,.panel-note{animation:none !important}
+.spark{display:none}
+}
+</style>
+</head>
+<body>
+<div class="yk">
+<canvas class="sky" aria-hidden="true"></canvas>
+<div class="page" id="top">
+
+<div class="nav-wrap">
+<nav class="nav wrap" aria-label="Основная навигация">
+<a class="brand" href="#top"><span class="seal" lang="ja" aria-hidden="true">鬼</span><span>ХЯККИ</span></a>
+<div class="nav-links">
+<a href="#oni">Они</a>
+<a href="#kitsune">Кицунэ</a>
+<a href="#tengu">Тэнгу</a>
+<a href="#charms">Обереги</a>
+</div>
+</nav>
+</div>
+
+<header class="hero">
+<div class="hero-kanji hi hd4" lang="ja" aria-hidden="true">百鬼夜行</div>
+<div class="hero-inner wrap">
+<h1 class="hero-title hi hd1"><span>Когда гаснут фонари,</span><span>приходят <em>они</em></span></h1>
+<p class="hero-sub hi hd2">Небольшая энциклопедия японских ёкаев: демоны они, лисы-оборотни кицунэ и горные духи тэнгу.</p>
+<div class="hero-actions hi hd3">
+<a class="btn btn-primary" href="#bestiary">Открыть бестиарий <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="btn btn-outline" href="#charms">Обереги</a>
+</div>
+</div>
+</header>
+
+<div class="marquee" id="sources" aria-label="Источники: Кодзики, Нихон сёки, Кондзяку моногатари, Хякки яко эмаки, Гадзу хякки яко, Отоги-дзоси">
+<div class="marquee-track">
+<div class="marquee-group">
+<span class="src"><b lang="ja">古事記</b><span>Кодзики</span></span>
+<span class="src"><b lang="ja">日本書紀</b><span>Нихон сёки</span></span>
+<span class="src"><b lang="ja">今昔物語集</b><span>Кондзяку моногатари</span></span>
+<span class="src"><b lang="ja">百鬼夜行絵巻</b><span>Хякки яко эмаки</span></span>
+<span class="src"><b lang="ja">画図百鬼夜行</b><span>Гадзу хякки яко</span></span>
+<span class="src"><b lang="ja">御伽草子</b><span>Отоги-дзоси</span></span>
+</div>
+<div class="marquee-group" aria-hidden="true">
+<span class="src"><b lang="ja">古事記</b><span>Кодзики</span></span>
+<span class="src"><b lang="ja">日本書紀</b><span>Нихон сёки</span></span>
+<span class="src"><b lang="ja">今昔物語集</b><span>Кондзяку моногатари</span></span>
+<span class="src"><b lang="ja">百鬼夜行絵巻</b><span>Хякки яко эмаки</span></span>
+<span class="src"><b lang="ja">画図百鬼夜行</b><span>Гадзу хякки яко</span></span>
+<span class="src"><b lang="ja">御伽草子</b><span>Отоги-дзоси</span></span>
+</div>
+</div>
+</div>
+
+<section class="section" id="bestiary">
+<div class="wrap">
+<div class="head">
+<span class="eyebrow rv">Бестиарий</span>
+<h2 class="h2 rv d1">Трое, кого стоит знать по именам</h2>
+<p class="lead rv d2">Тысячи ёкаев живут в японских преданиях. Эти трое встречаются чаще прочих: на свитках, в масках театра но и на праздниках.</p>
+</div>
+
+<article class="entry" id="oni">
+<div class="stage">
+<div class="stage-kanji" lang="ja" aria-hidden="true">鬼</div>
+<div class="smoke back s1"></div>
+<div class="smoke back s2"></div>
+<div class="ink back i1"></div>
+<div class="ink back i5"></div>
+<div class="reveal"><div class="float"><img class="mask" src="assets/oni.webp" alt="Лаковая маска они: красное лицо, костяные рога и оскал с клыками"></div></div>
+<div class="smoke front s3"></div>
+<div class="ink front i2"></div>
+<div class="ink front i3"></div>
+<div class="ink front i4"></div>
+<div class="veil veil-l"></div>
+<div class="veil veil-r"></div>
+<span class="spark" style="left: 22%; animation-delay: -0.4s; animation-duration: 6.4s"></span>
+<span class="spark" style="left: 38%; animation-delay: -2.1s; animation-duration: 7.8s"></span>
+<span class="spark" style="left: 55%; animation-delay: -4.6s; animation-duration: 6.9s"></span>
+<span class="spark" style="left: 68%; animation-delay: -1.3s; animation-duration: 8.4s"></span>
+<span class="spark" style="left: 80%; animation-delay: -5.5s; animation-duration: 7.1s"></span>
+<span class="spark" style="left: 46%; animation-delay: -3.3s; animation-duration: 9.2s"></span>
+</div>
+<div class="entry-body">
+<h3 class="entry-name rv">Они</h3>
+<p class="entry-sub rv d1"><b lang="ja">鬼</b><span>Демон-людоед</span></p>
+<p class="entry-text rv d1">Рогатые великаны с красной, синей или чёрной кожей, клыками и железной палицей канабо. Приходят с северо-востока, со стороны «кимон», демонических ворот. Рога и повязка из тигровой шкуры взяты от знаков быка и тигра, которыми в старом календаре обозначали это направление.</p>
+<dl class="facts rv d2">
+<div class="fact"><dt>Обитает</dt><dd>Преисподняя Дзигоку, глухие горы, заброшенные усадьбы</dd></div>
+<div class="fact"><dt>Облик</dt><dd>Рога, клыки, канабо, тигровая шкура</dd></div>
+<div class="fact"><dt>Нрав</dt><dd>Жесток и силён, но простодушен: его можно перехитрить</dd></div>
+<div class="fact"><dt>Боится</dt><dd>Жареных соевых бобов, которые бросают на праздник Сэцубун</dd></div>
+</dl>
+<p class="saying rv d3"><b lang="ja">鬼に金棒</b><span>«Они ни канабо», то есть «палица в руках они»: так говорят, когда сильный становится ещё сильнее.</span></p>
+</div>
+</article>
+
+<article class="entry" id="kitsune">
+<div class="stage stage-kitsune">
+<div class="stage-kanji" lang="ja" aria-hidden="true">狐</div>
+<div class="smoke back s1"></div>
+<div class="smoke back s2"></div>
+<div class="ink back i1"></div>
+<div class="ink back i5"></div>
+<div class="reveal"><div class="float" style="animation-delay: -2.5s"><img class="mask" src="assets/kitsune.webp" alt="Белая маска кицунэ с красными узорами и острыми ушами"></div></div>
+<div class="smoke front s3"></div>
+<div class="ink front i2"></div>
+<div class="ink front i3"></div>
+<div class="ink front i4"></div>
+<div class="veil veil-l"></div>
+<div class="veil veil-r"></div>
+<span class="spark fox" style="left: 14%; animation-delay: -1s; animation-duration: 9s"></span>
+<span class="spark fox" style="left: 30%; animation-delay: -5.2s; animation-duration: 10.5s"></span>
+<span class="spark fox" style="left: 72%; animation-delay: -2.8s; animation-duration: 8.6s"></span>
+<span class="spark fox" style="left: 86%; animation-delay: -7.4s; animation-duration: 11s"></span>
+<span class="spark fox" style="left: 52%; animation-delay: -4s; animation-duration: 12s"></span>
+</div>
+<div class="entry-body">
+<h3 class="entry-name rv">Кицунэ</h3>
+<p class="entry-sub rv d1"><b lang="ja">狐</b><span>Лиса-оборотень</span></p>
+<p class="entry-text rv d1">Лисы, что с годами обретают силу и новые хвосты, до девяти. Посланницы богини риса Инари охраняют её святилища, а дикие лисы-ногицунэ морочат путников огоньками, принимают облик красавиц и вселяются в людей. Такую одержимость зовут кицунэцуки.</p>
+<dl class="facts rv d2">
+<div class="fact"><dt>Обитает</dt><dd>Святилища Инари, рисовые поля, лесные опушки</dd></div>
+<div class="fact"><dt>Облик</dt><dd>Лиса или красавица, чья тень выдаёт хвост</dd></div>
+<div class="fact"><dt>Нрав</dt><dd>От верной посланницы до коварной обманщицы</dd></div>
+<div class="fact"><dt>Боится</dt><dd>Собак: от их лая оборотень теряет человеческий облик</dd></div>
+</dl>
+<p class="saying rv d3"><b lang="ja">狐の嫁入り</b><span>«Кицунэ но ёмэири», то есть «лисья свадьба»: так называют дождь при ясном солнце.</span></p>
+</div>
+</article>
+
+<article class="entry" id="tengu">
+<div class="stage stage-tengu">
+<div class="stage-kanji" lang="ja" aria-hidden="true">天狗</div>
+<div class="smoke back s1"></div>
+<div class="smoke back s2"></div>
+<div class="ink back i1"></div>
+<div class="ink back i5"></div>
+<div class="reveal"><div class="float" style="animation-delay: -4.5s"><img class="mask" src="assets/tengu.webp" alt="Красная маска тэнгу с длинным носом и чёрными перьями"></div></div>
+<div class="smoke front s3"></div>
+<div class="ink front i2"></div>
+<div class="ink front i3"></div>
+<div class="ink front i4"></div>
+<div class="veil veil-l"></div>
+<div class="veil veil-r"></div>
+<span class="spark feather" style="left: 18%; animation-delay: -1.5s; animation-duration: 12s"></span>
+<span class="spark feather" style="left: 34%; animation-delay: -7s; animation-duration: 14s"></span>
+<span class="spark feather" style="left: 64%; animation-delay: -3.6s; animation-duration: 11s"></span>
+<span class="spark feather" style="left: 82%; animation-delay: -9.5s; animation-duration: 13s"></span>
+</div>
+<div class="entry-body">
+<h3 class="entry-name rv">Тэнгу</h3>
+<p class="entry-sub rv d1"><b lang="ja">天狗</b><span>Горный дух-воин</span></p>
+<p class="entry-text rv d1">Длинноносые или птицеголовые духи гор в одеждах отшельников-ямабуси. Ранние предания делали их врагами буддийских монахов, поздние превратили в суровых наставников: на горе Курама король тэнгу Содзёбо, по легенде, учил фехтованию юного Минамото-но Ёсицунэ.</p>
+<dl class="facts rv d2">
+<div class="fact"><dt>Обитает</dt><dd>Криптомериевые леса, горные вершины</dd></div>
+<div class="fact"><dt>Облик</dt><dd>Красное лицо, длинный нос или клюв, крылья, веер из перьев</dd></div>
+<div class="fact"><dt>Нрав</dt><dd>Горд и вспыльчив, наказывает высокомерных</dd></div>
+<div class="fact"><dt>Берегись</dt><dd>Камикакуси: тэнгу уносит заблудившихся в горах</dd></div>
+</dl>
+<p class="saying rv d3"><b lang="ja">天狗になる</b><span>«Тэнгу ни нару», то есть «стать тэнгу»: так говорят о том, кто зазнался.</span></p>
+</div>
+</article>
+</div>
+</section>
+
+<section class="section" id="tails">
+<div class="wrap">
+<div class="split">
+<div>
+<h2 class="h2 rv">Чем больше хвостов, тем старше лиса</h2>
+<p class="lead rv d1">Девятихвостой кюби-но кицунэ, по преданию, больше тысячи лет. Она слышит всё, что творится в мире, а её мех становится золотым или белым.</p>
+</div>
+<div class="panel rv d1" data-trigger="tailsOn">
+<div class="panel-top"><span class="panel-title">Хвосты кицунэ</span><span class="panel-note" lang="ja">九尾</span></div>
+<div class="tails" role="img" aria-label="Девять хвостов: от молодой лисы до тысячелетней">
+<div class="tail-col"><div class="tail" style="height: 14%"></div><span class="tail-n" lang="ja">一</span></div>
+<div class="tail-col"><div class="tail" style="height: 23%"></div><span class="tail-n" lang="ja">二</span></div>
+<div class="tail-col"><div class="tail" style="height: 32%"></div><span class="tail-n" lang="ja">三</span></div>
+<div class="tail-col"><div class="tail" style="height: 41%"></div><span class="tail-n" lang="ja">四</span></div>
+<div class="tail-col"><div class="tail" style="height: 50%"></div><span class="tail-n" lang="ja">五</span></div>
+<div class="tail-col"><div class="tail" style="height: 59%"></div><span class="tail-n" lang="ja">六</span></div>
+<div class="tail-col"><div class="tail" style="height: 68%"></div><span class="tail-n" lang="ja">七</span></div>
+<div class="tail-col"><div class="tail" style="height: 77%"></div><span class="tail-n" lang="ja">八</span></div>
+<div class="tail-col"><div class="tail" style="height: 86%"></div><span class="tail-n" lang="ja">九</span></div>
+</div>
+<div class="tails-axis"><span>Молодая лиса</span><span>Тысяча лет</span></div>
+<ul class="signs">
+<li><span>Огни над ночным полем</span><i></i><b>кицунэби</b></li>
+<li><span>Дождь при ясном солнце</span><i></i><b>лисья свадьба</b></li>
+<li><span>Хвост в тени красавицы</span><i></i><b>оборотень</b></li>
+<li><span>Пёс рычит на гостя</span><i></i><b>разоблачение</b></li>
+</ul>
+</div>
+</div>
+
+<div class="bento" data-trigger="factsOn">
+<div class="cell cell-big rv"><div class="cell-value jp brush" lang="ja"><span class="ember-glow">百</span></div><div class="cell-label">Сто демонов шествуют по улицам в ночь Хякки яко.</div></div>
+<div class="cell rv d1"><div class="cell-value jp brush" lang="ja"><span class="foxfire">九</span></div><div class="cell-label">Хвостов у древнейших кицунэ.</div></div>
+<div class="cell rv d2"><div class="cell-value"><span class="sr">1776</span><span class="count" aria-hidden="true"></span></div><div class="cell-label">Год, когда Ториями Сэкиэн издал «Гадзу хякки яко».</div></div>
+<div class="cell cell-long rv d3"><div class="cell-value jp" lang="ja"><span class="stamp" style="--i: 0">八</span><span class="stamp" style="--i: 1">百</span><span class="stamp" style="--i: 2">万</span></div><div class="cell-label">«Восемь миллионов» ками: так говорят о бесчисленных духах Японии.</div></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="charms">
+<div class="wrap">
+<div class="head">
+<span class="eyebrow rv">Обереги</span>
+<h2 class="h2 rv d1">Как пережить ночное шествие</h2>
+<p class="lead rv d2">Хякки яко: ночь, когда сотня демонов идёт по улицам. Старые средства помогают и в обычные ночи.</p>
+</div>
+<div class="charms">
+<div class="charm rv"><div class="charm-k" lang="ja" aria-hidden="true">豆</div><h3>Жареные соевые бобы</h3><p>На Сэцубун их бросают за порог с криком «Они ва сото! Фуку ва ути!»: демоны прочь, счастье в дом.</p></div>
+<div class="charm rv d1"><div class="charm-k" lang="ja" aria-hidden="true">柊</div><h3>Падуб и голова сардины</h3><p>Хиираги-иваси вешают у входа: колючие листья ранят глаза демонам, а запах рыбы отпугивает.</p></div>
+<div class="charm rv d2"><div class="charm-k" lang="ja" aria-hidden="true">犬</div><h3>Собака</h3><p>Кицунэ боится собак: под их лай лиса-оборотень не удержит человеческий облик.</p></div>
+<div class="charm rv d3"><div class="charm-k" lang="ja" aria-hidden="true">謙</div><h3>Скромность</h3><p>Тэнгу наказывают гордецов. В горах лучше не хвастаться ни силой, ни учёностью.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section cta">
+<div class="wrap cta">
+<h2 class="cta-title rv">Скажи <em>«моси-моси»</em> дважды</h2>
+<p class="lead rv d1">По поверью, лиса-оборотень не может повторить приветствие. Говорят, потому в Японии и отвечают по телефону удвоенным «моси-моси».</p>
+<a class="btn btn-primary rv d2" href="#top">Вернуться к луне <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></a>
+</div>
+</section>
+
+<div class="wrap">
+<footer class="footer">
+<div class="footer-brand">
+<a class="brand" href="#top"><span class="seal" lang="ja" aria-hidden="true">鬼</span><span>ХЯККИ</span></a>
+<p>Небольшая энциклопедия японских ёкаев. Читать после заката.</p>
+</div>
+<div class="footer-cols">
+<div class="footer-col"><h4>Бестиарий</h4><a href="#oni">Они</a><a href="#kitsune">Кицунэ</a><a href="#tengu">Тэнгу</a></div>
+<div class="footer-col"><h4>Предания</h4><a href="#charms">Хякки яко</a><a href="#charms">Сэцубун</a><a href="#tails">Девять хвостов</a></div>
+<div class="footer-col"><h4>Источники</h4><a href="#sources">Кодзики</a><a href="#sources">Ториями Сэкиэн</a><a href="#sources">Кондзяку моногатари</a></div>
+</div>
+</footer>
+<p class="copyright">© <span id="year">2026</span> Хякки. Собрано при свете бумажных фонарей.</p>
+</div>
+
+</div>
+</div>
+<script>
+(() => {
+  'use strict';
+  const MOON_COLOR = '#d2462c';
+  const WISPS = 10;
+
+  const root = document.querySelector('.yk');
+  const year = document.getElementById('year');
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  // plays each block's text animation once it is a third of the way into view
+  if ('IntersectionObserver' in window) {
+    root.classList.add('js');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('on');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('[data-trigger]').forEach((el) => io.observe(el));
+  }
+
+  const c = document.querySelector('canvas.sky');
+  const gl = c && (c.getContext('webgl', { antialias: false, alpha: false }) || c.getContext('experimental-webgl'));
+  if (!gl) return;
+
+  const VS = 'attribute vec2 aPos;void main(){gl_Position=vec4(aPos,0.0,1.0);}';
+  const FS = `
+precision highp float;
+uniform vec2 uRes; uniform float uTime; uniform vec3 uMoon; uniform vec3 uTint; uniform float uWisps; uniform float uP; uniform float uMoonA;
+float hash(vec2 p){ p = fract(p*vec2(123.34,456.21)); p += dot(p, p+45.32); return fract(p.x*p.y); }
+float noise(vec2 p){ vec2 i=floor(p); vec2 f=fract(p); vec2 u=f*f*(3.0-2.0*f);
+  return mix(mix(hash(i),hash(i+vec2(1.0,0.0)),u.x), mix(hash(i+vec2(0.0,1.0)),hash(i+vec2(1.0,1.0)),u.x), u.y); }
+float fbm(vec2 p){ float v=0.0; float a=0.5; mat2 m=mat2(1.6,1.2,-1.2,1.6);
+  for(int i=0;i<5;i++){ v+=a*noise(p); p=m*p; a*=0.5; } return v; }
+vec3 warp3d(vec3 pos, float t){ float curv=.8,a=1.9,b=0.7; pos*=2.;
+  pos.x+=curv*sin(t+a*pos.y)+t*b; pos.y+=curv*cos(t+a*pos.x);
+  pos.y+=curv*sin(t+a*pos.z)+t*b; pos.z+=curv*cos(t+a*pos.y);
+  pos.z+=curv*sin(t+a*pos.x)+t*b; pos.x+=curv*cos(t+a*pos.z);
+  return 0.5+0.5*cos(pos.xyz+vec3(1,2,4)); }
+void main(){
+  vec2 frag = gl_FragCoord.xy;
+  vec2 uv = (frag - 0.5*uRes)/uRes.y;
+  vec2 sc = frag/uRes*2.0 - 1.0;
+  float t = uTime;
+  float asp = uRes.x/uRes.y;
+
+  vec3 col = mix(vec3(0.012,0.008,0.01), vec3(0.045,0.014,0.018), smoothstep(0.6,-0.6,uv.y));
+
+  vec2 g = uv*70.0; vec2 id = floor(g); float h = hash(id);
+  if(h > 0.974){
+    vec2 o = vec2(hash(id+3.1), hash(id+7.7))*0.8+0.1;
+    float sd = length(fract(g)-o);
+    float tw = 0.55+0.45*sin(t*1.7 + h*90.0);
+    col += vec3(1.0,0.92,0.88)*smoothstep(0.09,0.0,sd)*tw*0.75*smoothstep(-0.35,0.25,uv.y);
+  }
+
+  vec2 mc = uMoon.xy; float R = uMoon.z;
+  vec2 d = (uv-mc)/R; float r = length(d);
+  float px = 1.5/(R*uRes.y);
+  float mMask = 1.0 - smoothstep(1.0-px, 1.0+px, r);
+  float od = max(r-1.0, 0.0)*R;
+  float halo = 0.5*exp(-od*9.0) + 0.28*exp(-od*2.4);
+  col += uTint*halo*0.55*(1.0-mMask)*uMoonA;
+  if(r < 1.0+px){
+    float rr = min(r, 0.999);
+    vec3 n = vec3(d, sqrt(1.0-rr*rr));
+    float spin = t*0.01 + uP*2.4;
+    vec2 sp = vec2(atan(n.x, n.z) + spin, asin(clamp(n.y,-1.0,1.0)));
+    float maria = fbm(sp*vec2(1.4,1.8) + 3.0);
+    float crat = fbm(sp*6.0 + 11.0);
+    vec3 base = mix(uTint*1.2, uTint*0.34, smoothstep(0.35,0.7,maria));
+    base *= 0.8 + 0.4*crat;
+    vec3 L = normalize(vec3(-0.35,0.45,0.82));
+    float lam = clamp(dot(n,L), 0.0, 1.0);
+    vec3 moon = base*(0.15 + 0.92*lam)*pow(n.z, 0.45);
+    col = mix(col, moon, mMask*uMoonA);
+  }
+
+  vec2 cp = vec2(uv.x*1.2 + t*0.018, uv.y*4.2 - uP*3.0);
+  float cl = fbm(cp + vec2(fbm(cp*0.7 + t*0.01)*1.2, 0.0));
+  float band = smoothstep(0.48, 0.78, cl);
+  float nearMoon = exp(-length(uv-mc)/(R*1.4+0.15))*uMoonA;
+  vec3 cloudCol = vec3(0.022,0.01,0.012) + uTint*nearMoon*(0.2 + 0.55*smoothstep(0.78,0.5,cl));
+  col = mix(col, cloudCol, band*0.88);
+
+  float f = fbm(vec2(uv.x*1.8 + t*0.035, uv.y*2.6 + t*0.012));
+  float fogM = smoothstep(0.05, -0.5, uv.y)*(0.35 + 0.65*f);
+  col = mix(col, vec3(0.11,0.07,0.08) + uTint*0.04, fogM*0.55);
+
+  for(int i=0;i<16;i++){
+    float fi = float(i);
+    if(fi >= uWisps) break;
+    float h1 = hash(vec2(fi,1.7)); float h2 = hash(vec2(fi,9.2)); float h3 = hash(vec2(fi,4.4));
+    float rise = fract(h2 + t*0.01*(0.5+h3));
+    vec2 wp = vec2((h1*2.0-1.0)*asp*0.47 + 0.07*sin(t*(0.21+h2*0.2)+fi), -0.5 + rise*0.95 + 0.04*sin(t*(0.37+h3*0.3)+fi*2.1));
+    float life = smoothstep(0.0,0.12,rise)*smoothstep(1.0,0.75,rise);
+    vec2 q = uv - wp;
+    q.x += 0.01*sin(q.y*40.0 - t*6.0 + fi);
+    float dd = length(vec2(q.x, q.y > 0.0 ? q.y*0.35 : q.y));
+    float fl = 0.7 + 0.3*sin(t*9.0+fi*3.7)*sin(t*4.3+fi*1.3);
+    vec3 wc = mod(fi,3.0) < 0.5 ? vec3(1.0,0.5,0.22) : vec3(0.55,0.8,1.0);
+    col += wc*(exp(-dd*dd*6000.0)*0.9 + exp(-dd*38.0)*0.18)*fl*life;
+  }
+
+  vec3 w = pow(warp3d(vec3(sc.x, sin(sc.y), sc.y), t*0.6), vec3(1.5));
+  vec3 flame = 1.5*uTint*w.x; flame *= w.y; flame += vec3(0.9,0.25,0.12)*w.z*0.4;
+  flame *= smoothstep(0.25, 1.0, abs(sc.y));
+  float md = smoothstep(-0.7, 1.0, -sc.y*sc.x); flame *= md*md;
+  col += flame*0.1;
+
+  col *= 1.0 - 0.38*dot(sc*0.75, sc*0.75);
+  col += (hash(frag + fract(t*7.0)*137.0) - 0.5)*0.03;
+  col = max(col, 0.0);
+  gl_FragColor = vec4(pow(col, vec3(0.92)), 1.0);
+}`;
+
+  const mk = (type, text) => {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, text);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; }
+    return s;
+  };
+  const vs = mk(gl.VERTEX_SHADER, VS);
+  const fs = mk(gl.FRAGMENT_SHADER, FS);
+  if (!vs || !fs) return;
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs);
+  gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.warn(gl.getProgramInfoLog(prog)); return; }
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const aPos = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+  const U = {};
+  ['uRes', 'uTime', 'uMoon', 'uTint', 'uWisps', 'uP', 'uMoonA'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
+
+  const reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const sample = (stops, p) => {
+    if (p <= stops[0].p) return stops[0].v;
+    for (let i = 0; i < stops.length - 1; i++) {
+      const a = stops[i], b = stops[i + 1];
+      if (p <= b.p) { let k = (p - a.p) / (b.p - a.p); k = k * k * (3 - 2 * k); return a.v + (b.v - a.v) * k; }
+    }
+    return stops[stops.length - 1].v;
+  };
+  // moon choreography: rises large on the right behind the hero, fades while the masks are on
+  // screen, crosses to the other side, and settles behind the closing line
+  const SX = [{ p: 0, v: 0.55 }, { p: 0.3, v: -0.78 }, { p: 0.62, v: 0.8 }, { p: 1, v: 0 }];
+  const SY = [{ p: 0, v: -0.26 }, { p: 0.3, v: 0.3 }, { p: 0.62, v: 0.28 }, { p: 1, v: 0.04 }];
+  const SR = [{ p: 0, v: 0.6 }, { p: 0.3, v: 0.15 }, { p: 0.62, v: 0.17 }, { p: 1, v: 0.34 }];
+  const SA = [{ p: 0, v: 1 }, { p: 0.05, v: 1 }, { p: 0.12, v: 0 }, { p: 0.58, v: 0 }, { p: 0.67, v: 1 }, { p: 1, v: 1 }];
+  const n = parseInt(MOON_COLOR.slice(1), 16);
+  const tint = [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+
+  let W = 1, H = 1, cw = 0, ch = 0;
+  const resize = () => {
+    cw = c.clientWidth || window.innerWidth;
+    ch = c.clientHeight || window.innerHeight;
+    let dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const maxPx = 2.6e6;
+    if (cw * ch * dpr * dpr > maxPx) dpr = Math.sqrt(maxPx / (cw * ch));
+    W = Math.max(1, Math.round(cw * dpr));
+    H = Math.max(1, Math.round(ch * dpr));
+    if (c.width !== W || c.height !== H) { c.width = W; c.height = H; }
+    gl.viewport(0, 0, W, H);
+  };
+  window.addEventListener('resize', resize);
+  resize();
+
+  const t0 = performance.now();
+  const st = { p: 0, x: sample(SX, 0), y: sample(SY, 0), r: sample(SR, 0), a: 1, time: 0, last: t0 };
+  const frame = (now) => {
+    if ((c.clientWidth || window.innerWidth) !== cw || (c.clientHeight || window.innerHeight) !== ch) resize();
+    const dt = Math.min(0.05, Math.max(0, (now - st.last) / 1000));
+    st.last = now;
+    const se = document.scrollingElement || document.documentElement;
+    const max = se.scrollHeight - window.innerHeight;
+    const pT = max > 2 ? clamp((window.scrollY || se.scrollTop) / max, 0, 1) : 0;
+    st.p += (pT - st.p) * Math.min(1, dt * 4.5);
+    const asp = W / H;
+    const side = clamp(asp / 1.5, 0.45, 1);
+    const k = Math.min(1, dt * 3.2);
+    st.x += (sample(SX, st.p) * asp * 0.5 * side - st.x) * k;
+    st.y += (sample(SY, st.p) - st.y) * k;
+    st.r += (sample(SR, st.p) * (asp < 1 ? 1.25 : 1) - st.r) * k;
+    st.a += (sample(SA, st.p) - st.a) * k;
+    const e = reduce ? 1 : Math.min(1, (now - t0) / 2400);
+    const entryY = -0.95 * Math.pow(1 - e, 3);
+    if (!reduce) st.time += dt;
+    gl.uniform2f(U.uRes, W, H);
+    gl.uniform1f(U.uTime, st.time + 7.0);
+    gl.uniform3f(U.uMoon, st.x, st.y + entryY, st.r);
+    gl.uniform3f(U.uTint, tint[0], tint[1], tint[2]);
+    gl.uniform1f(U.uWisps, WISPS);
+    gl.uniform1f(U.uP, st.p);
+    gl.uniform1f(U.uMoonA, st.a);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
