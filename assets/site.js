@@ -57,9 +57,9 @@
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-live', 'polite');
     box.setAttribute('aria-label', 'Уведомление о cookie');
-    box.innerHTML = '<p>Мы используем cookie, чтобы сайт работал и чтобы считать посещения. Подробнее в <a href="privacy.html#cookie">политике конфиденциальности</a>.</p>'
-      + '<div class="cookie-actions"><button type="button" class="primary" data-choice="all">Принять</button>'
-      + '<button type="button" data-choice="necessary">Только необходимые</button></div>';
+    box.innerHTML = '<p>У нас есть cookie. Не печеньки, к сожалению: они нужны, чтобы сайт работал и чтобы считать, сколько вас тут. Подробности в <a href="privacy.html#cookie">политике конфиденциальности</a>.</p>'
+      + '<div class="cookie-actions"><button type="button" class="primary" data-choice="all">Окей</button>'
+      + '<button type="button" data-choice="necessary">Только нужные</button></div>';
     document.body.appendChild(box);
     requestAnimationFrame(() => box.classList.add('in'));
     box.addEventListener('click', (e) => {
