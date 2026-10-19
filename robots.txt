@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mprav-cld.github.io/hyakki-yokai/sitemap.xml
