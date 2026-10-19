@@ -631,7 +631,8 @@ html{scroll-behavior:auto}
   'use strict';
   const MOON_COLOR = '#d2462c';
   const WISPS = 10;
-  const track = window.hyakki ? window.hyakki.track : () => {};
+  // site.js loads deferred, after this script, so look the tracker up on every call
+  const track = (event, params) => { if (window.hyakki) window.hyakki.track(event, params); };
   const root = document.querySelector('.yk');
 
   // ---- block animations play once a block is a third of the way into view
